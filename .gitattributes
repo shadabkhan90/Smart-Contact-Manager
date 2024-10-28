@@ -1,0 +1,4 @@
+/mvnw text eol=lf
+*.cmd text eol=crlf
+*.gitignore text eol=lf
+node_modules/* text eol=lf
