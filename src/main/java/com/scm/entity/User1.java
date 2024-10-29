@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 
 @Entity
@@ -20,6 +21,7 @@ import lombok.AllArgsConstructor;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User1 {
 
     @Id
@@ -43,15 +45,11 @@ public class User1 {
     private boolean enabled=false;
     private boolean emailVerified=false;
     private boolean phoneVerified=false;
-
     private Provider provider=Provider.SELF;
     private String providerUserId;
 
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Contact> contacts = new ArrayList<>();
-
-
+       private List<Contact> contacts = new ArrayList<>();
  
 
 }
