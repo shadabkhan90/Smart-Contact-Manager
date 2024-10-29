@@ -1,13 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#content} , ~{::title})}">
-<head>
+  <head>
     <title>register page</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="content">
-        <h1>this is register page</h1>
+      <div class="flex justify-center items-center min-h-screen py-0">
+        <a
+          href="#"
+          class="block w-1/2 p-6 border-4 border-blue-200 border-t-4 border-t-blue-500 bg-white rounded-lg shadow hover:bg-gray-100"
+        >
+          <h5
+            class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            Register Here
+          </h5>
+          <p class="text-sm text-gray-400 dark:text-gray-400">
+            you can register your account here
+          </p>
+
+          <form action="" class="mt-3">
+            <div class="mb-2">
+              <label
+                for="name"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Your Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+                for="email"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Your Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Abcd@gmail.com"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+                for="passwprd"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Your Password</label
+              >
+              <input
+                type="password"
+                id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+                for="number"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Your phone Number</label
+              >
+              <input
+                type="text"
+                id="number"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+                for="message"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Write something about yourself</label
+              >
+              <textarea
+                id="message"
+                rows="2"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Write your thoughts here..."
+              ></textarea>
+            </div>
+            <div class="mt-2 flex gap-6 justify-center">
+            <button class="bg-blue-500 text-sm text-white px-3 py-2 rounded-md">
+              Register
+            </button>
+            <button class="bg-red-500 text-sm text-white px-3 py-2 rounded-md">
+              Reset
+            </button>
+            </div>
+          </form>
+        </a>
+      </div>
     </div>
-
-
-</body>
+  </body>
 </html>

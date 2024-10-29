@@ -10,7 +10,7 @@ xmlns:th="http://www.thymeleaf.org">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" date-th-href="@{'/css/output.css'}"/>
 </head>
-<body>
+<body class="bg-gray-300">
 <div th:replace="~{Navbar :: navbar}"></div>
 
 
@@ -24,8 +24,6 @@ xmlns:th="http://www.thymeleaf.org">
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     
 
-<footer th:fragment="footer" class="p-5 text-center bg-gray-800 text-white fixed bottom-0 w-full">
-    <p>copyright &copy; 2024 SCM</p>
-</footer>
+
 </body>
 </html>
