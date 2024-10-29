@@ -8,7 +8,7 @@ public class PageController {
 
     @RequestMapping("/home1")   // Changed from /home1 for consistency
     public String home() {
-        return "home";     // Template name should match URL for consistency
+        return "home1";     // Template name should match URL for consistency
     }
     
     @RequestMapping("/about")
@@ -25,4 +25,21 @@ public class PageController {
     public String basePage() {
         return "base";
     }
+
+    @RequestMapping("/contact")
+    public String contactPage() {
+        return "contact";
+    }
+
+    @RequestMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @RequestMapping("/register")
+    public String registerPage() {
+        return "register";
+    }
+
+    
 }
