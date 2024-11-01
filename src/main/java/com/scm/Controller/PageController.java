@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.scm.Helpers.message;
+import com.scm.Helpers.messagetype;
 import com.scm.Services.UserService;
 import com.scm.entity.User1;
 import com.scm.forms.UserForm;
 
-import lombok.Builder;
+import jakarta.servlet.http.HttpSession;
 
 @Controller // Add base path for all endpoints
 public class PageController {
@@ -19,11 +21,11 @@ public class PageController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/home1")   // Changed from /home1 for consistency
+    @RequestMapping("/home1") // Changed from /home1 for consistency
     public String home() {
-        return "home1";     // Template name should match URL for consistency
+        return "home1"; // Template name should match URL for consistency
     }
-    
+
     @RequestMapping("/about")
     public String about() {
         return "about";
@@ -52,35 +54,37 @@ public class PageController {
     @RequestMapping("/register")
     public String registerPage(Model model) {
         UserForm userfrom = new UserForm();
-      
-        model.addAttribute("userForm",userfrom);
+
+        model.addAttribute("userForm", userfrom);
         return "register";
     }
 
-    @RequestMapping(value="/do-register",method=RequestMethod.POST)
-    public String doRegister(@ModelAttribute UserForm userForm){
-        //fetch data from user
+    @RequestMapping(value = "/do-register", method = RequestMethod.POST)
+    public String doRegister(@ModelAttribute UserForm userForm, HttpSession session) {
+        // fetch data from user
         System.out.println(userForm);
-        //save data in database
+        // save data in database
 
-        User1 user1=User1.builder()
-        .name(userForm.getName())
-        .email(userForm.getEmail())
-        .password(userForm.getPassword())
-        .about(userForm.getAbout())
-        .phoneNumber(userForm.getPhoneNumber())
-        .build();
-
-   
+        User1 user1 = new User1();
+        user1.setName(userForm.getName());
+        user1.setPassword(userForm.getPassword());
+        user1.setPhoneNumber(userForm.getPhoneNumber());
+        user1.setEmail(userForm.getEmail());
+        user1.setAbout(userForm.getAbout());
 
         User1 savedUser = userService.saveUser1(user1);
 
         System.out.println("User saved successfully: " + savedUser);
 
+        message msg = message.builder()
+                .content("Registration Successful")
+                .type(messagetype.GREEN)
+                .build();
+
+        session.setAttribute("message", msg);
 
         //
-        return"redirect:/register";
+        return "redirect:/register";
     }
 
-    
 }
