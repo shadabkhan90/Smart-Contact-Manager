@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
  
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.scm.Helpers.AppConstant;
 import com.scm.Helpers.ResourceNotFoundException;
 import com.scm.Repositories.UserRepo;
 import com.scm.Services.UserService;
@@ -20,6 +22,8 @@ import com.scm.entity.User1;
 
 @Service
 public class UserServicesimple implements UserService {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepo userRepo;
@@ -28,7 +32,14 @@ public class UserServicesimple implements UserService {
     @Override
     public User1 saveUser1(User1 user1) {
         String userId = UUID.randomUUID().toString();
+        user1.setPassword(passwordEncoder.encode(user1.getPassword()));
+//set the user role
+        user1.getRolelList().add(AppConstant.ROLE_USER);
+        
+
+
         user1.setUserId(userId);
+        
         return userRepo.save(user1);
 
     }
