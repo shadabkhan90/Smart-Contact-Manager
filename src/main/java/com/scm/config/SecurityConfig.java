@@ -2,25 +2,32 @@ package com.scm.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import lombok.var;
+import com.scm.Services.imple.SecurityCustomUserDeatilsServies;
 
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User
-                .withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .build();
+    @Autowired
+    private SecurityCustomUserDeatilsServies userDeatilsServies;
 
-        var InMemoryUserDetailsManager = new InMemoryUserDetailsManager(user);
-        return InMemoryUserDetailsManager;
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        // UserDetailsService ka object set kararey hai
+        daoAuthenticationProvider.setUserDetailsService(userDeatilsServies);
+        // Password Encoder ka object create kararey hai
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        return daoAuthenticationProvider;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
