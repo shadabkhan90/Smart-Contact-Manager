@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping("/dashboard")
-    public String dashboard(){
+    @RequestMapping(value = "/dashboard")
+    public String Userdashboard(){
         return "user/dashboard";
     }
-    @RequestMapping("/profile")
-    public String profile(){
+    @RequestMapping(value = "/profile")
+    public String Userprofile(){
         return "user/profile";
     }
 

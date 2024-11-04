@@ -33,8 +33,8 @@ public class UserServicesimple implements UserService {
     public User1 saveUser1(User1 user1) {
         String userId = UUID.randomUUID().toString();
         user1.setPassword(passwordEncoder.encode(user1.getPassword()));
-//set the user role
-        user1.getRolelList().add(AppConstant.ROLE_USER);
+        //set the user role
+        user1.getRoleList().add(AppConstant.ROLE_USER);
         
 
 

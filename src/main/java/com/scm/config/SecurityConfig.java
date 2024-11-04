@@ -16,17 +16,7 @@ import com.scm.Services.imple.SecurityCustomUserDeatilsServies;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        //urls configuration ki hai ki konse public hai ya private hai
-        httpSecurity.authorizeHttpRequests(authorize ->{
-            authorize.requestMatchers("/user/**").authenticated();
-            authorize.anyRequest().permitAll();
-        });
-        httpSecurity.formLogin(Customizer.withDefaults());
-
-        return httpSecurity.build();
-    }
+ 
 
     
     
@@ -48,5 +38,29 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        //urls configuration ki hai ki konse public hai ya private hai
+        httpSecurity.authorizeHttpRequests(authorize ->{
+            authorize.requestMatchers("/user/**").authenticated();
+            authorize.anyRequest().permitAll();
+        });
+        httpSecurity.formLogin(formLogin -> {
+            formLogin.loginPage("/login");
+            formLogin.loginProcessingUrl("/authenticate");
+            formLogin.defaultSuccessUrl("/user/dashboard");
+            formLogin.failureUrl("/login?error=true");
+            formLogin.usernameParameter("email");
+            formLogin.passwordParameter("password");
+        });
+        httpSecurity.csrf(csrf -> csrf.disable());
+        httpSecurity.logout(logout -> {
+            logout.logoutUrl("/logout");
+            logout.logoutSuccessUrl("/login?logout=true");
+        });
+
+
+        return httpSecurity.build();
     }
 }

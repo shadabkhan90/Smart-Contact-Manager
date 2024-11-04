@@ -48,27 +48,31 @@ public class User1 implements UserDetails {
     private String phoneNumber;
 
     @Column(length = 1000)
+    @Builder.Default
     private String profilePic = "";
+    @Builder.Default
     private boolean enabled = true;
+    @Builder.Default
     private boolean emailVerified = false;
+    @Builder.Default
     private boolean phoneVerified = false;
+    @Builder.Default
     private Provider provider = Provider.SELF;
     private String providerUserId;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-       private List<Contact> contacts = new ArrayList<>();
+    @Builder.Default
+    private List<Contact> contacts = new ArrayList<>();
 
-
-
-       List<String> rolelList = new ArrayList<>();
+    @Builder.Default
+    private List<String> roleList = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-    //List of roles [admin, user,]
-    //collection of simpleGrantedAuthority[roles{ADMIN, USER}]
-        Collection<SimpleGrantedAuthority> roles = rolelList.stream().map(role -> new SimpleGrantedAuthority(role)).collect(Collectors.toList());
-       
-       return roles;
+        //List of roles [admin, user,]
+        //collection of simpleGrantedAuthority[roles{ADMIN, USER}]
+        Collection<SimpleGrantedAuthority> roles = roleList.stream().map(role -> new SimpleGrantedAuthority(role)).collect(Collectors.toList());
+        return roles;
     }
 
     @Override
@@ -80,6 +84,24 @@ public class User1 implements UserDetails {
     public String getPassword() {
         return this.password;
     }
- 
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    public List<String> getRoleList() {
+        return this.roleList;
+    }
 
 }

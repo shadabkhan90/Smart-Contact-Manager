@@ -5,10 +5,84 @@
 </head>
 <body>
     <div id="content">
-        <h1>this is login page</h1>
-        
-    </div>
+    <div class="flex justify-center items-center min-h-screen py-0">
+        <a
+          href="#"
+          class="block w-1/2 p-6 border-4 border-blue-200 border-t-4 border-t-blue-500 bg-white rounded-lg shadow hover:bg-gray-100"
+        >
+        <div th:replace = "message :: messagebox">
 
 
+        </div>
+          <h5
+            class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+          >
+            Login Here
+          </h5>
+          <p class="text-sm text-gray-400 dark:text-gray-400">
+            you can Login your account here
+          </p>
+          <div class="text-red-500 text-center my-3" th:if="${param.error}">
+			Invalid username and password.</div>
+		<div class="text-green-500 text-center my-3" th:if="${param.logout}">
+			You have been logged out.</div>
+
+          <form
+          th:action="@{/authenticate}"
+          method="post"
+          >
+            <div class="mb-2">
+              <label
+            
+                for="email"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Your Email</label
+              >
+              <input
+                name="email"
+                type="email"
+                id="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Abcd@gmail.com"
+                required
+              />
+            </div>
+            <div class="mb-2">
+              <label
+             
+                for="passwprd"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Your Password</label
+              >
+              <input
+                name="password"
+                type="password"
+                id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+           
+
+            <div class="mt-2 flex gap-6 justify-center">
+              <button
+              type="submit"
+                class="bg-blue-500 text-sm text-white px-3 py-2 rounded-md"
+              >
+                Login
+              </button>
+              <button
+              type="reset"
+                class="bg-red-500 text-sm text-white px-3 py-2 rounded-md"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+        </a>
+      </div>
+
+<script>"Login Page"</script>
 </body>
 </html>
