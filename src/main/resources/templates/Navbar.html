@@ -1,28 +1,51 @@
 <nav th:fragment="navbar" class="bg-gray-800 border-gray-200 dark:bg-gray-900">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-        <div class="flex items-center space-x-8">
+        <div class="flex items-center">
             <div class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="/images/address-book.png" class="h-8" alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Smart Contact Manager</span>
             </div>
-            <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+            <button data-collapse-toggle="mobile-menu" type="button" 
+                class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" 
+                aria-controls="mobile-menu" 
+                aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden w-full md:flex md:w-auto" id="mobile-menu">
+            <ul class="flex flex-col md:flex-row font-medium p-4 md:p-0 mt-4 md:mt-0 md:space-x-8 rtl:space-x-reverse text-sm">
                 <li>
-                    <a th:href=@{'/home1'} class="text-white hover:underline" aria-current="page">Home</a>
+                    <a th:href=@{'/home1'} class="block py-2 text-white hover:underline" aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a th:href=@{'/about'} class="text-white hover:underline">About</a>
+                    <a th:href=@{'/about'} class="block py-2 text-white hover:underline">About</a>
                 </li>
                 <li>
-                    <a th:href=@{'/services'} class="text-white hover:underline">Services</a>
+                    <a th:href=@{'/services'} class="block py-2 text-white hover:underline">Services</a>
                 </li>
                 <li>
-                    <a th:href=@{'/contact'} class="text-white hover:underline">Contact</a>
+                    <a th:href=@{'/contact'} class="block py-2 text-white hover:underline">Contact</a>
+                </li>
+                <li class="md:hidden">
+                    <a th:href=@{'/register'} class="block py-2 text-blue-600 dark:text-blue-500 hover:underline">SignUp</a>
+                </li>
+                <li class="md:hidden">
+                    <a th:href=@{'/login'} class="block py-2 text-blue-600 dark:text-blue-500 hover:underline">Login</a>
                 </li>
             </ul>
         </div>
-        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+        <div class="hidden md:flex items-center space-x-6 rtl:space-x-reverse">
             <a th:href=@{'/register'} class="text-sm text-blue-600 dark:text-blue-500 hover:underline">SignUp</a>
             <a th:href=@{'/login'} class="text-sm text-blue-600 dark:text-blue-500 hover:underline">Login</a>
         </div>
     </div>
 </nav>
+
+<script>
+    document.querySelector('[data-collapse-toggle="mobile-menu"]').addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+</script>

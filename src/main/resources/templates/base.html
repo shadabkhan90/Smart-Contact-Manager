@@ -13,7 +13,7 @@
       href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" date-th-href="@{'/css/output.css'}" />
+    <link rel="stylesheet" th:href="@{'/css/output.css'}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -23,7 +23,12 @@
     />
   </head>
   <body class="bg-gray-300">
-    <div th:replace="~{Navbar :: navbar}"></div>
+    <div th:if="${user}">
+      <div th:replace="~{user/User_Navbar :: user-navbar}"></div>
+    </div>
+    <div th:unless="${user}"> 
+      <div th:replace="~{Navbar :: navbar}"></div>
+    </div>
 
     <section class="p-5">
       <div th:replace="${content}"></div>

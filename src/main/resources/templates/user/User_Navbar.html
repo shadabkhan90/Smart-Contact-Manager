@@ -1,0 +1,43 @@
+
+    <nav th:fragment="user-navbar" class="fixed top-0 right-0 w-full bg-gray-800 border-gray-200 dark:bg-gray-900 sm:pl-64">
+        <div class="flex flex-wrap items-center mx-auto max-w-screen-xl p-4">
+            <div class="flex items-center w-full md:w-auto">
+                <div class="flex items-center space-x-3 rtl:space-x-reverse sm:items-center">
+                    <img src="/images/address-book.png" class="h-8" alt="Flowbite Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Smart Contact Manager</span>
+                </div>
+                <button id="navbar-toggle" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-gray-700 focus:outline-none ml-auto">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="navbar-menu" class="hidden w-full md:flex md:w-auto md:order-1 lg:flex lg:justify-center lg:flex-1">
+                <ul class="flex flex-col md:flex-row font-medium p-4 md:p-0 mt-4 md:mt-0 md:space-x-8  text-sm lg:justify-center lg:items-center lg:mx-auto">
+                    <li>
+                        <a th:href=@{'/home1'} class="block py-2 text-white hover:underline" aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a th:href=@{'/about'} class="block py-2 text-white hover:underline">About</a>
+                    </li>
+                    <li>
+                        <a th:href=@{'/services'} class="block py-2 text-white hover:underline">Services</a>
+                    </li>
+                    <li>
+                        <a th:href=@{'/contact'} class="block py-2 text-white hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex justify-center md:justify-center lg:absolute lg:right-4 lg:top-4 space-x-2">
+                <a th:href=@{'/user/profile'} class="text-sm text-blue-600 dark:text-blue-500 bg-white rounded-md px-2 py-1 hover:underline"><span th:text="${user.name}"></span></a>
+                <a th:href=@{'/logout'} class="text-sm text-blue-600 dark:text-blue-500 bg-white rounded-md px-2 py-1 hover:underline">logout</a>
+            </div>
+        </div>
+    
+        <script>
+            document.getElementById('navbar-toggle').addEventListener('click', function() {
+                const menu = document.getElementById('navbar-menu');
+                menu.classList.toggle('hidden');
+            });
+        </script>
+    </nav>

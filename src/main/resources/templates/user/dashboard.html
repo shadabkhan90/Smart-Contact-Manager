@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org"
+th:replace="~{base :: parent(~{::#content}, ~{::title})}">
 <head>
-    <title>Dashboard</title>
+
+    <title th:text="${user.name}">profilePage</title>
+ 
 </head>
-<body>
-    <h1>This is User Dashboard</h1>
-    <a th:href="@{/logout}">Logout</a>
+<body >
+    <div id="content">
+        
+ 
+        <div th:replace="~{user/side_navbar :: side-navbar}"></div>
+        <div class="pl-64 sm:pt-20" >
+            <div class="flex justify-center flex-col items-center">
+                <h1>Dashboard page</h1>
+            </div>
+        </div>
+    
+ 
+
+
+   
+    </div>
+    <!-- Link to JavaScript file -->
+    
 </body>
 </html>
