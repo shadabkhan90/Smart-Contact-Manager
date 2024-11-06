@@ -1,29 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" 
-xmlns:th="http://www.thymeleaf.org"
-th:replace="~{base :: parent(~{::#content}, ~{::title})}">
-<head>
-
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{base :: parent(~{::#content}, ~{::title})}"
+>
+  <head>
     <title th:text="${user.name}">profilePage</title>
- 
-</head>
-<body >
-    <div id="content">
-        
- 
-        <div th:replace="~{user/side_navbar :: side-navbar}"></div>
-        <div class="pl-64 sm:pt-20" >
-            <div class="flex justify-center flex-col items-center">
-                <h1>Dashboard page</h1>
-            </div>
-        </div>
+  </head>
+  <body>
+    <div id="content" class="sm:ml-64 mt-16 p-4">
     
- 
-
-
-   
+        <h1>Dashboard page</h1>
     </div>
-    <!-- Link to JavaScript file -->
-    
-</body>
+  </body>
 </html>

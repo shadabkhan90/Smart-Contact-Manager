@@ -1,5 +1,5 @@
 
-    <nav th:fragment="user-navbar" class="fixed top-0 right-0 w-full bg-gray-800 border-gray-200 dark:bg-gray-900 sm:pl-64">
+    <nav th:fragment="user-navbar" class="fixed top-0 right-0 w-full bg-gray-800 border-gray-200 dark:bg-gray-900 lg:sm:pl-64">
         <div class="flex flex-wrap items-center mx-auto max-w-screen-xl p-4">
             <div class="flex items-center w-full md:w-auto">
                 <div class="flex items-center space-x-3 rtl:space-x-reverse sm:items-center">
@@ -34,10 +34,5 @@
             </div>
         </div>
     
-        <script>
-            document.getElementById('navbar-toggle').addEventListener('click', function() {
-                const menu = document.getElementById('navbar-menu');
-                menu.classList.toggle('hidden');
-            });
-        </script>
+
     </nav>

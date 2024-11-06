@@ -22,10 +22,14 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body class="bg-gray-300">
+  <body class="bg-gray-300 ">
     <div th:if="${user}">
       <div th:replace="~{user/User_Navbar :: user-navbar}"></div>
     </div>
+    <div th:if="${user}">
+      <div th:replace="~{user/side_navbar :: side-navbar}"></div>
+    </div>
+    
     <div th:unless="${user}"> 
       <div th:replace="~{Navbar :: navbar}"></div>
     </div>
