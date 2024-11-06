@@ -1,9 +1,10 @@
 package com.scm.forms;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
-import com.scm.entity.User1;
-
+import com.scm.entity.Contact;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,4 +37,6 @@ public class ContactForm {
     private String description;
     
     private boolean favorite;
+
+    List<Contact> contacts;
 }

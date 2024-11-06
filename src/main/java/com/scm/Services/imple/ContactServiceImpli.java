@@ -10,6 +10,7 @@ import com.scm.Helpers.ResourceNotFoundException;
 import com.scm.Repositories.ContactRepo;
 import com.scm.Services.ContactServices;
 import com.scm.entity.Contact;
+import com.scm.entity.User1;
 
 @Service
 public class ContactServiceImpli implements ContactServices {
@@ -41,6 +42,8 @@ public class ContactServiceImpli implements ContactServices {
 
     @Override
     public List<Contact> getAllContacts() {
+
+        
         return contactRepo.findAll();
     }
 
@@ -60,14 +63,16 @@ public class ContactServiceImpli implements ContactServices {
 
 
     @Override
-    public List<Contact> getByUserID(String userID) {
-        return contactRepo.findByUserId(userID);
-    }
-
-    @Override
     public List<Contact> searchContact(String name, String email, String phone) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'searchContact'");
     }
+
+    @Override
+    public List<Contact> getByUser(User1 userID) {
+        return contactRepo.findByUser(userID);
+    }
+
+
 
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{base :: parent(~{::#content}, ~{::title})}"
+>
+  <head>
+    <title>Contacts</title>
+  </head>
+  <body>
+    <div id="content" class="container">
+      <!-- Search and Add Contact Header -->
+      <div class="flex justify-between items-center mb-4 sm:ml-64 mt-16">
+        <div class="relative">
+          <input type="text" id="search-input" 
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" 
+            placeholder="Search contacts...">
+        </div>
+        <a th:href="@{/user/contact/add}" 
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+          Add New Contact
+        </a>
+      </div>
+
+      <!-- Contacts Table -->
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg sm:ml-64">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">Name</th>
+              <th scope="col" class="px-6 py-3">Email</th>
+              <th scope="col" class="px-6 py-3">Phone</th>
+              <th scope="col" class="px-6 py-3">Work</th>
+              <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="contact : ${contacts}" 
+                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" th:text="${contact.name}">
+              </th>
+              <td class="px-6 py-4" th:text="${contact.email}"></td>
+              <td class="px-6 py-4" th:text="${contact.phoneNumber}"></td>
+              <td class="px-6 py-4" th:text="${contact.address}"></td>
+              <td class="px-6 py-4 flex gap-2">
+                <a th:href="@{/user/contact/delete/{id}(id=${contact.id})}" 
+                    class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                    <i class="fas fa-trash"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

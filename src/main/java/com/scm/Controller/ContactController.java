@@ -1,6 +1,7 @@
 package com.scm.Controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,6 +87,18 @@ public class ContactController {
 
         session.setAttribute("message", msg);
         return "redirect:/user/contact/add";
+    }
+
+    @RequestMapping()
+    public String viewContact(Model model, Principal principal) {
+        String userName = principal.getName();
+        User1 user = userRepository.findByEmail(userName)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        model.addAttribute("user", user);
+        // Get all contacts of the user
+        List<Contact> contacts = contactServices.getByUser(user);
+        model.addAttribute("contacts", contacts);
+        return "user/view_contacts";
     }
 
 }
