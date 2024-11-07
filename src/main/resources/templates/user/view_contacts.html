@@ -82,15 +82,10 @@
               <td class="px-6 py-4" th:text="${contact.phoneNumber}"></td>
               <td class="px-6 py-4" th:text="${contact.address}"></td>
               <td class="px-6 py-4 flex gap-2">
-                <a
-                  th:href="@{/user/contact/edit/{id}(id=${contact.id})}"
-                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  <i class="fas fa-edit"></i>
-                </a>
+
                 <a
                   th:href="@{/user/contact/delete/{id}(id=${contact.id})}"
-                  class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                  class="font-medium flex items-center gap-2 text-red-600 dark:text-red-500 hover:underline"
                 >
                   <i class="fas fa-trash"></i>
                 </a>

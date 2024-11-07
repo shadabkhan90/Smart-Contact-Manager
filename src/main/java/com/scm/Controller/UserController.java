@@ -23,8 +23,7 @@ public class UserController {
         System.out.println(username);
 
         User1 user = userRepo.findByEmail(username).orElseThrow(() -> new RuntimeException("User not found"));
-        System.out.println("User details: " + user.toString());
-        model.addAttribute("user", user);
+      model.addAttribute("user", user);
         return "user/dashboard";
     }
     @RequestMapping(value = "/profile")

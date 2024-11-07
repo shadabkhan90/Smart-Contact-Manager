@@ -4,6 +4,7 @@ import java.security.Principal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -107,6 +108,7 @@ public class ContactController {
 
     @RequestMapping("/search")
     public String searchContact(
+
         @RequestParam(value = "keyword", defaultValue = "") String keyword,
         @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
@@ -129,6 +131,12 @@ public class ContactController {
         model.addAttribute("keyword", keyword); // Add this to preserve the search term
         
         return "user/search_contacts";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteContact(@PathVariable("id") String id, Principal principal, HttpSession session) {
+        contactServices.deleteContact(id);
+        return "redirect:/user/contact";
     }
 
 }

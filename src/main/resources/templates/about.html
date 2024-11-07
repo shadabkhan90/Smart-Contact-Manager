@@ -1,15 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#content} , ~{::title})}">
 <head>
-    <title>about page</title>
+    <title>About Smart Contact Manager</title>
 </head>
 <body>
     <div id="content">
-        <h1>this is about page</h1>
-        
-       
+        <!-- Hero Section with Background Image -->
+        <div class="relative overflow-hidden bg-cover bg-no-repeat" 
+             style="background-image: url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/coast-house-view.jpg'); height: 400px;">
+            <div class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed bg-black/50">
+                <div class="flex h-full items-center justify-center">
+                    <div class="px-6 text-center text-white md:px-12">
+                        <h1 class="mb-6 text-5xl font-bold">Smart Contact Manager</h1>
+                        <p class="text-xl">Organize your contacts intelligently</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="container mx-auto px-4 py-8">
+            <!-- Features Section -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold mb-6 text-center">What We Offer</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+                        <svg class="w-10 h-10 mb-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
+                        </svg>
+                        <h3 class="mb-2 text-2xl font-bold">Secure Storage</h3>
+                        <p class="text-gray-700">Your contacts are encrypted and stored securely</p>
+                    </div>
+                    <!-- Add similar cards for other features -->
+                </div>
+            </section>
+
+            <!-- Why Choose Us Section -->
+            <section class="mb-12 bg-gray-50 rounded-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center">Why Choose Us?</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="flex items-center">
+                        <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-content-1.png" alt="office content 1">
+                    </div>
+                    <div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                                </svg>
+                                <span>Data Security</span>
+                            </li>
+                            <!-- Add similar items for other points -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center">Contact Us</h2>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <svg class="w-8 h-8 mx-auto mb-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 2-8.4 7.05a1 1 0 0 1-1.2 0L1 2m18 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1m18 0v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2"/>
+                        </svg>
+                        <p>khanShadab94729@gmail.com</p>
+                    </div>
+                    <!-- Add similar blocks for phone and address -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-gray-800 text-white py-4 text-center">
+            <p>&copy; 2024 Smart Contact Manager. All rights reserved.</p>
+        </footer>
     </div>
-
-
 </body>
 </html>

@@ -1,41 +1,115 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#homepage}, ~{::title})}">
 <head>
-
-    <title>homepage</title>
- 
+    <title>Smart Contact Manager - Organize Your Contacts Efficiently</title>
+    <!-- Bootstrap CSS is assumed to be included in the base template -->
 </head>
 <body id="homepage">
     <header>
-        <h1> xjha jsahdbas dbam xahd sand smus</h1>
-        <h3>WDKHASDBX WJHD DASDX JD XDa</h3>
-        <h1>
-        
+        <div class="bg-primary text-white py-5" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/contact-hero.jpg') center/cover;">
+            <div class="container py-5 text-center">
+                <h1 class="display-3 fw-bold mb-3">Smart Contact Manager</h1>
+                <p class="lead mb-4">Organize, Manage, and Connect with Ease</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="/signup" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+                    <a href="/login" class="btn btn-outline-light btn-lg px-4">Login</a>
+                </div>
+            </div>
+        </div>
     </header>
     
     <main>
-        <section>
-            <h2>dsahdaxdh </h2>
-            <p>gdkjfbdsfksdb dsddsj nsdkjns</p>
+        <!-- Features Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm text-center p-3">
+                            <div class="card-body">
+                                <i class="fas fa-layer-group fa-3x text-primary mb-3"></i>
+                                <h4 class="card-title">Organize Contacts</h4>
+                                <p class="card-text">Efficiently categorize and manage your contacts with smart organization tools.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm text-center p-3">
+                            <div class="card-body">
+                                <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                                <h4 class="card-title">Secure Storage</h4>
+                                <p class="card-text">Your contacts are safely stored with enterprise-grade security.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm text-center p-3">
+                            <div class="card-body">
+                                <i class="fas fa-sync fa-3x text-primary mb-3"></i>
+                                <h4 class="card-title">Cloud Sync</h4>
+                                <p class="card-text">Access your contacts anywhere, anytime with cloud synchronization.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm text-center p-3">
+                            <div class="card-body">
+                                <i class="fas fa-share-alt fa-3x text-primary mb-3"></i>
+                                <h4 class="card-title">Easy Sharing</h4>
+                                <p class="card-text">Share contact lists with team members and collaborate seamlessly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        
-        <section>
-            <h2>sdnbhsj jash dxd xjgdnAB DX</h2>
-            <p>dkhasbjdasgdjsabdsa djgsydnasjd asd</p>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="mb-4">Statistics</h2>
+                        <div class="d-flex justify-content-between">
+                            <div class="text-center">
+                                <h3 class="fw-bold">10K+</h3>
+                                <p class="text-muted">Active Users</p>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="fw-bold">1M+</h3>
+                                <p class="text-muted">Contacts Managed</p>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="fw-bold">99.9%</h3>
+                                <p class="text-muted">Uptime</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        
-   
-    
     </main>
 
     <footer>
-        <p>&copy; 2024 My Website</p>
+        <div class="bg-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-muted">&copy; 2024 Smart Contact Manager</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <a href="/privacy" class="text-muted me-3">Privacy Policy</a>
+                            <a href="/terms" class="text-muted me-3">Terms of Service</a>
+                            <a href="/contact" class="text-muted">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
-
-   
-
     <!-- Link to JavaScript file -->
-    
 </body>
 </html>
