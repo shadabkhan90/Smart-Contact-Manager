@@ -67,16 +67,7 @@ public class ContactController {
         contact.setUser(user);
 
         // Handle file upload
-        if (!file.isEmpty()) {
-            try {
-                // Add your file handling logic here
-                // For example, save to filesystem or cloud storage
-                // contact.setProfileImage(savedFilePath);
-            } catch (Exception e) {
-                e.printStackTrace();
-                // Handle error appropriately
-            }
-        }
+
 
         contactServices.save(contact);
         message msg = message.builder()
@@ -137,6 +128,47 @@ public class ContactController {
     public String deleteContact(@PathVariable("id") String id, Principal principal, HttpSession session) {
         contactServices.deleteContact(id);
         return "redirect:/user/contact";
+    }
+
+    @RequestMapping("/edit/{id}")
+    public String editContact(@PathVariable("id") String id, Model model, Principal principal) {
+        String userName = principal.getName();
+        User1 user = userRepository.findByEmail(userName)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        Contact contact = contactServices.getContactById(id);
+        ContactForm contactForm = new ContactForm();
+        contactForm.setName(contact.getName());
+        contactForm.setEmail(contact.getEmail());
+        contactForm.setAddress(contact.getAddress());
+        contactForm.setDescription(contact.getDescription());
+        contactForm.setPhoneNumber(contact.getPhoneNumber());
+        contactForm.setFavorite(contact.isFavorite());
+        
+        model.addAttribute("contactForm", contactForm);
+        model.addAttribute("contact", contact);
+        model.addAttribute("user", user);
+        return "user/edit_contacts";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String updateContact(@PathVariable("id") String id, @ModelAttribute ContactForm contactForm, Principal principal, HttpSession session) {
+        Contact contact = new Contact();
+        contact.setId(id);
+        contact.setName(contactForm.getName());
+        contact.setEmail(contactForm.getEmail());
+        contact.setAddress(contactForm.getAddress());
+        contact.setDescription(contactForm.getDescription());
+        contact.setPhoneNumber(contactForm.getPhoneNumber());
+        contact.setFavorite(contactForm.isFavorite());
+        contactServices.update(contact);
+
+        message msg = message.builder()
+                .content("Contact Updated Successfully")
+                .type(messagetype.GREEN)
+                .build();
+
+        session.setAttribute("message", msg);
+        return "redirect:/user/contact/edit/" +id;
     }
 
 }
