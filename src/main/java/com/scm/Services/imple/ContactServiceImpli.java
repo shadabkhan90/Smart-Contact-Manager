@@ -2,8 +2,13 @@ package com.scm.Services.imple;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.scm.Helpers.ResourceNotFoundException;
@@ -11,12 +16,17 @@ import com.scm.Repositories.ContactRepo;
 import com.scm.Services.ContactServices;
 import com.scm.entity.Contact;
 import com.scm.entity.User1;
-
 @Service
 public class ContactServiceImpli implements ContactServices {
 
     @Autowired
     private ContactRepo contactRepo;
+    @Override
+    public Page<Contact> getByUser(User1 user1, int pageNumber, int pageSize,String sortBy, String direction) {
+        Sort sort = direction.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+        return contactRepo.findByUser(user1, pageable);
+    }
 
     @Override
     public Contact save(Contact contact) {
@@ -58,21 +68,30 @@ public class ContactServiceImpli implements ContactServices {
         contactRepo.delete(contact);
     }
 
-
-
-
-
     @Override
-    public List<Contact> searchContact(String name, String email, String phone) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'searchContact'");
-    }
-
-    @Override
-    public List<Contact> getByUser(User1 userID) {
-        return contactRepo.findByUser(userID);
+    public Page<Contact> searchContacts(User1 user, String keyword, int pageNumber, int pageSize, String sortBy,
+            String direction) {
+                Sort sort = direction.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+                Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+                return contactRepo.findByUserAndNameContainingOrEmailContainingOrPhoneNumberContaining(user, keyword, keyword, keyword, pageable);
+      
     }
 
 
 
-}
+
+
+   
+
+    }
+
+
+
+    
+
+
+
+
+
+
+

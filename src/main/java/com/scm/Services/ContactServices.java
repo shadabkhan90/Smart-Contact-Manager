@@ -2,6 +2,9 @@ package com.scm.Services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.scm.entity.Contact;
 import com.scm.entity.User1;
 
@@ -23,12 +26,13 @@ public interface ContactServices {
     
 
     //search
-    List<Contact> searchContact(String name, String email, String phone);
+    Page<Contact> searchContacts(User1 user, String keyword, int pageNumber, int pageSize, String sortBy, String direction);
+
 
     
     
 
-    List<Contact> getByUser(User1 user);
+    Page<Contact> getByUser(User1 user1, int pageNumber, int pageSize,String sortBy, String direction);
 
 
 

@@ -1,8 +1,6 @@
 package com.scm.Controller;
 
 import java.security.Principal;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,7 +22,7 @@ import com.scm.forms.ContactForm;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 
 @Controller
@@ -90,15 +88,47 @@ public class ContactController {
     }
 
     @RequestMapping()
-    public String viewContact(Model model, Principal principal) {
+    public String viewContact(
+        @RequestParam(value = "pageNumber",defaultValue = "0") int pageNumber,
+        @RequestParam(value = "pageSize",defaultValue = "10") int pageSize,
+        @RequestParam(value = "sortBy",defaultValue = "name") String sortBy,
+        @RequestParam(value = "direction",defaultValue = "asc") String direction,
+        Model model, Principal principal) {
         String userName = principal.getName();
         User1 user = userRepository.findByEmail(userName)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         model.addAttribute("user", user);
         // Get all contacts of the user
-        List<Contact> contacts = contactServices.getByUser(user);
-        model.addAttribute("contacts", contacts);
+        Page<Contact> pagecontact= contactServices.getByUser(user, pageNumber, pageSize, sortBy, direction);
+        model.addAttribute("pagecontact", pagecontact);
         return "user/view_contacts";
+    }
+
+
+    @RequestMapping("/search")
+    public String searchContact(
+        @RequestParam(value = "keyword", defaultValue = "") String keyword,
+        @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+        @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+        @RequestParam(value = "direction", defaultValue = "asc") String direction,
+        Model model, Principal principal) {
+        
+        String userName = principal.getName();
+        User1 user = userRepository.findByEmail(userName)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        model.addAttribute("user", user);
+
+        if(keyword.isEmpty()) {
+            return "redirect:/user/contact";
+        }
+
+        // Search across all fields with the keyword
+        Page<Contact> pagecontact = contactServices.searchContacts(user, keyword, pageNumber, pageSize, sortBy, direction);
+        model.addAttribute("pagecontact", pagecontact);
+        model.addAttribute("keyword", keyword); // Add this to preserve the search term
+        
+        return "user/search_contacts";
     }
 
 }

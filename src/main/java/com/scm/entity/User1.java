@@ -22,6 +22,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 
+
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -103,5 +105,6 @@ public class User1 implements UserDetails {
     public List<String> getRoleList() {
         return this.roleList;
     }
+
 
 }
