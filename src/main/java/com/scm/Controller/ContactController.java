@@ -50,7 +50,7 @@ public class ContactController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String saveContact(@ModelAttribute ContactForm contactForm,
-            @RequestParam("profile") MultipartFile file,
+            @RequestParam(value = "profile", required = false) MultipartFile file,
             Principal principal, HttpSession session) {
 
         String userName = principal.getName();

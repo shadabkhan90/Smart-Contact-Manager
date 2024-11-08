@@ -1,4 +1,4 @@
-<nav th:fragment="navbar" class="bg-gray-800 border-gray-200 dark:bg-gray-900">
+<nav th:fragment="navbar" class="fixed top-0 left-0 right-0 z-50 bg-gray-800 border-gray-200 dark:bg-gray-900">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
         <div class="flex items-center">
             <div class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -26,9 +26,7 @@
                 <li>
                     <a th:href=@{'/services'} class="block py-2 text-white hover:underline">Services</a>
                 </li>
-                <li>
-                    <a th:href=@{'/contact'} class="block py-2 text-white hover:underline">Contact</a>
-                </li>
+
                 <li class="md:hidden">
                     <a th:href=@{'/register'} class="block py-2 text-blue-600 dark:text-blue-500 hover:underline">SignUp</a>
                 </li>
@@ -43,6 +41,9 @@
         </div>
     </div>
 </nav>
+
+<!-- Add this div right after the nav to create space for the fixed navbar -->
+<div class="h-16"></div>
 
 <script>
     document.querySelector('[data-collapse-toggle="mobile-menu"]').addEventListener('click', function() {

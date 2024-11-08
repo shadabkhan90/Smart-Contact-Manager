@@ -8,7 +8,13 @@
     <title>Contacts</title>
   </head>
   <body>
-    <div id="content" class="container">
+    <div id="content" class="container" style="
+        background-image: url('/images/home1.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+    ">
       <!-- Search and Add Contact Header -->
 
       <!-- Contacts Table -->
@@ -16,8 +22,8 @@
         class="relative overflow-x-auto shadow-md mt-16 sm:rounded-lg sm:ml-64"
       >
         <div class="flex justify-between items-center mb-4">
-          <div class="flex items-center gap-4">
-            <h1 class="text-2xl font-bold">Contacts</h1>
+          <div class="flex items-center gap-4 mt-4">
+            <h1 class="text-2xl font-bold text-white ">Contacts</h1>
 
             <!-- Add search form -->
             <form
@@ -43,7 +49,7 @@
 
           <a
             th:href="@{/user/contact/add}"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            class="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >
             Add New Contact
           </a>

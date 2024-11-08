@@ -5,15 +5,18 @@
   </head>
   <body>
     <div id="content">
-      <div class="flex justify-center items-center min-h-screen py-0">
-        <a
-          href="#"
-          class="block w-1/2 p-6 border-4 border-blue-200 border-t-4 border-t-blue-500 bg-white rounded-lg shadow hover:bg-gray-100"
-        >
-        <div th:replace = "message :: messagebox">
+      <div class="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10" 
+           style="background-image: url('/images/home1.png');">
+      </div>
+      <div class="fixed inset-0 bg-black bg-opacity-50 -z-10"></div>
+      
+      <div class="flex justify-center min-h-screen pt-20 pb-8">
+        <a href="#"
+           class="block w-1/2 p-6 border-4 border-blue-200 border-t-4 border-t-blue-500 bg-white rounded-lg shadow hover:bg-gray-100 h-fit">
+          <div th:replace = "message :: messagebox">
 
 
-        </div>
+          </div>
           <h5
             class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"
           >

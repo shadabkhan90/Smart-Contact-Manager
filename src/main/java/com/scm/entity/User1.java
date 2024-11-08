@@ -69,6 +69,8 @@ public class User1 implements UserDetails {
     @Builder.Default
     private List<String> roleList = new ArrayList<>();
 
+    private String phone;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //List of roles [admin, user,]
@@ -106,5 +108,12 @@ public class User1 implements UserDetails {
         return this.roleList;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
 }

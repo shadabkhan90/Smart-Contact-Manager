@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title th:replace="${title}">SCM</title>
+    <title th:replace="${title}">Smart Contact Manager</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
@@ -22,19 +22,19 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body class="bg-gray-300 ">
+  <body class="bg-gray-300">
     <div th:if="${user}">
       <div th:replace="~{user/User_Navbar :: user-navbar}"></div>
     </div>
     <div th:if="${user}">
       <div th:replace="~{user/side_navbar :: side-navbar}"></div>
     </div>
-    
-    <div th:unless="${user}"> 
+
+    <div th:unless="${user}">
       <div th:replace="~{Navbar :: navbar}"></div>
     </div>
 
-    <section class="p-5">
+    <section class="pt-15">
       <div th:replace="${content}"></div>
     </section>
 

@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+<html lang="en" th:replace="~{base :: parent(~{::#content} , ~{::title})}">
 <head>
-    <title>services page</title>
+    <title>Services</title>
 </head>
 <body>
     <div id="content">
-        <h1>this is services page</h1>
-       
+        <!-- Hero Section with Background Image -->
+        <section class="hero-section w-full h-screen flex items-center justify-center" style="background: url('/images/home1.png') center/cover no-repeat fixed;">
+            <div class="container mx-auto px-4 text-center text-white">
+                <h1 class="text-5xl font-bold mb-6 text-blue-500">About Smart Contact Manager</h1>
+                <div class="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl mx-auto">
+                    <p class="text-xl mb-4 text-blue-400">
+                        Smart Contact Manager is a modern, secure, and efficient way to manage your contacts digitally.
+                    </p>
+                    <div class="grid grid-cols-1 gap-8 mt-8">
+                        <div class="feature-card mx-auto">
+                            <h3 class="text-2xl font-semibold mb-3 text-center">Key Features</h3>
+                            <ul class="list-disc list-inside mx-auto max-w-md">
+                                <li>Secure contact storage</li>
+                                <li>User-friendly interface</li>
+                                <li>Contact categorization</li>
+                                <li>Search functionality</li>
+                                <li>Contact Upload option</li>
+                                <li>Contact Update option</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </body>
-</html> 
+</html>

@@ -8,114 +8,119 @@
     <title th:text="${user.name}">profilePage</title>
   </head>
   <body>
-    <div id="content">
-      <div class="pt-16 flex justify-center flex-col items-center">
+    <div id="content" class="relative min-h-screen">
+      <div 
+        class="fixed top-0 left-0 right-0 bottom-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-50 z-[-1]"
+        style="background-image: url('/images/home1.png');"
+      >
+      </div>
+      <div class="relative pt-16 pl-64 flex justify-center min-h-screen">
         <div
-          class="block w-full max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          class="block w-full max-w-md p-8 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700 max-h-[85vh] overflow-y-auto"
         >
-        <div th:replace = "user/ContactMessage :: messagebox2"></div>
-          <h1 class="text-2xl text-center font-bold mb-4">Add Contact Here</h1>
+          <div th:replace="user/ContactMessage :: messagebox2"></div>
+          <h1 class="text-3xl text-center font-bold mb-8 text-gray-800 dark:text-white">Add Contact</h1>
+          
           <form
             th:action="@{/user/contact/add}"
             th:object="${contactForm}"
             method="post"
             enctype="multipart/form-data"
+            class="space-y-6"
           >
-            <div class="mb-4">
+            <div class="space-y-2">
               <label
                 for="first_name"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Contact Name</label
-              >
+                class="text-sm font-semibold text-gray-700 dark:text-gray-200"
+              >Contact Name</label>
               <input
                 th:field="*{name}"
                 type="text"
                 id="first_name"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Contact Name"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 dark:bg-gray-700"
+                placeholder="Enter contact name"
                 required
               />
             </div>
-            <div class="mb-4">
+
+            <div class="space-y-2">
               <label
                 for="email"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Contact Email address</label
-              >
+                class="text-sm font-semibold text-gray-700 dark:text-gray-200"
+              >Contact Email address</label>
               <input
                 th:field="*{email}"
                 type="email"
                 id="email"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 dark:bg-gray-700"
                 placeholder="john.doe@company.com"
                 required
               />
             </div>
-            <div class="mb-4">
+
+            <div class="space-y-2">
               <label
                 for="phone"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Phone number</label
-              >
+                class="text-sm font-semibold text-gray-700 dark:text-gray-200"
+              >Phone number</label>
               <input
                 th:field="*{phoneNumber}"
                 type="tel"
                 id="phone"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 dark:bg-gray-700"
                 placeholder="+91XXXXXXXXXX"
-               
                 required
               />
             </div>
-            <div class="mb-4">
+
+            <div class="space-y-2">
               <label
                 for="message"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Contact Address</label
-              >
+                class="text-sm font-semibold text-gray-700 dark:text-gray-200"
+              >Contact Address</label>
               <textarea
                 th:field="*{address}"
                 id="message"
                 rows="2"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 dark:bg-gray-700"
                 placeholder="Write Contact Address here..."
               ></textarea>
             </div>
-            <div class="mb-4">
+
+            <div class="space-y-2">
               <label
                 for="description"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Contact Description</label
-              >
+                class="text-sm font-semibold text-gray-700 dark:text-gray-200"
+              >Contact Description</label>
               <textarea
                 th:field="*{description}"
                 id="description"
                 rows="2"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 dark:bg-gray-700"
                 placeholder="Write Contact Description here..."
               ></textarea>
             </div>
 
-            <div class="flex items-center ml-4 mb-4">
+            <div class="flex items-center gap-3 my-6">
               <input
                 th:field="*{favorite}"
                 id="default-checkbox"
                 type="checkbox"
                 value="true"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                class="w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 transition duration-200"
               />
               <label
                 for="default-checkbox"
-                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Is this your favorite contact?</label
-              >
+                class="text-sm font-medium text-gray-700 dark:text-gray-300"
+              >Mark as favorite contact</label>
             </div>
-            <div class="mb-4 flex justify-center">
+
+            <div class="flex justify-center pt-4">
               <button
                 type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="w-full sm:w-auto px-8 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold shadow-md hover:shadow-lg transition duration-300 focus:ring-4 focus:ring-blue-300"
               >
-                Submit
+                Add Contact
               </button>
             </div>
           </form>
