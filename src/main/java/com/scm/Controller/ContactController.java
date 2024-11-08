@@ -68,7 +68,6 @@ public class ContactController {
 
         // Handle file upload
 
-
         contactServices.save(contact);
         message msg = message.builder()
                 .content("Contact Added Successfully")
@@ -81,46 +80,46 @@ public class ContactController {
 
     @RequestMapping()
     public String viewContact(
-        @RequestParam(value = "pageNumber",defaultValue = "0") int pageNumber,
-        @RequestParam(value = "pageSize",defaultValue = "10") int pageSize,
-        @RequestParam(value = "sortBy",defaultValue = "name") String sortBy,
-        @RequestParam(value = "direction",defaultValue = "asc") String direction,
-        Model model, Principal principal) {
+            @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Model model, Principal principal) {
         String userName = principal.getName();
         User1 user = userRepository.findByEmail(userName)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         model.addAttribute("user", user);
         // Get all contacts of the user
-        Page<Contact> pagecontact= contactServices.getByUser(user, pageNumber, pageSize, sortBy, direction);
+        Page<Contact> pagecontact = contactServices.getByUser(user, pageNumber, pageSize, sortBy, direction);
         model.addAttribute("pagecontact", pagecontact);
         return "user/view_contacts";
     }
 
-
     @RequestMapping("/search")
     public String searchContact(
 
-        @RequestParam(value = "keyword", defaultValue = "") String keyword,
-        @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-        @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
-        @RequestParam(value = "direction", defaultValue = "asc") String direction,
-        Model model, Principal principal) {
-        
+            @RequestParam(value = "keyword", defaultValue = "") String keyword,
+            @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Model model, Principal principal) {
+
         String userName = principal.getName();
         User1 user = userRepository.findByEmail(userName)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         model.addAttribute("user", user);
 
-        if(keyword.isEmpty()) {
+        if (keyword.isEmpty()) {
             return "redirect:/user/contact";
         }
 
         // Search across all fields with the keyword
-        Page<Contact> pagecontact = contactServices.searchContacts(user, keyword, pageNumber, pageSize, sortBy, direction);
+        Page<Contact> pagecontact = contactServices.searchContacts(user, keyword, pageNumber, pageSize, sortBy,
+                direction);
         model.addAttribute("pagecontact", pagecontact);
         model.addAttribute("keyword", keyword); // Add this to preserve the search term
-        
+
         return "user/search_contacts";
     }
 
@@ -143,7 +142,7 @@ public class ContactController {
         contactForm.setDescription(contact.getDescription());
         contactForm.setPhoneNumber(contact.getPhoneNumber());
         contactForm.setFavorite(contact.isFavorite());
-        
+
         model.addAttribute("contactForm", contactForm);
         model.addAttribute("contact", contact);
         model.addAttribute("user", user);
@@ -151,7 +150,8 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String updateContact(@PathVariable("id") String id, @ModelAttribute ContactForm contactForm, Principal principal, HttpSession session) {
+    public String updateContact(@PathVariable("id") String id, @ModelAttribute ContactForm contactForm,
+            Principal principal, HttpSession session) {
         Contact contact = new Contact();
         contact.setId(id);
         contact.setName(contactForm.getName());
@@ -168,7 +168,17 @@ public class ContactController {
                 .build();
 
         session.setAttribute("message", msg);
-        return "redirect:/user/contact/edit/" +id;
+        return "redirect:/user/contact/edit/" + id;
     }
 
+    @RequestMapping("/details/{id}")
+    public String contactDetails(@PathVariable("id") String id, Model model, Principal principal) {
+        String userName = principal.getName();
+        User1 user = userRepository.findByEmail(userName)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        Contact contact = contactServices.getContactById(id);
+        model.addAttribute("contact", contact);
+        model.addAttribute("user", user);
+        return "user/Contact_Details";
+    }
 }

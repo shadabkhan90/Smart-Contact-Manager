@@ -8,13 +8,17 @@
     <title>Contacts</title>
   </head>
   <body>
-    <div id="content" class="container" style="
+    <div
+      id="content"
+      class="container"
+      style="
         background-image: url('/images/home1.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         min-height: 100vh;
-    ">
+      "
+    >
       <!-- Search and Add Contact Header -->
 
       <!-- Contacts Table -->
@@ -23,7 +27,7 @@
       >
         <div class="flex justify-between items-center mb-4">
           <div class="flex items-center gap-4 mt-4">
-            <h1 class="text-2xl font-bold text-white ">Contacts</h1>
+            <h1 class="text-2xl font-bold text-white">Contacts</h1>
 
             <!-- Add search form -->
             <form
@@ -88,20 +92,24 @@
               <td class="px-6 py-4" th:text="${contact.phoneNumber}"></td>
               <td class="px-6 py-4" th:text="${contact.address}"></td>
               <td class="px-6 py-4 flex gap-2">
-
                 <a
                   th:href="@{/user/contact/delete/{id}(id=${contact.id})}"
                   class="font-medium flex items-center gap-4 text-red-600 dark:text-red-500 hover:underline"
                 >
                   <i class="fas fa-trash"></i>
                 </a>
-              
 
-                <a 
+                <a
                   th:href="@{/user/contact/edit/{id}(id=${contact.id})}"
                   class="font-medium flex items-center gap-4 ml-2 text-red-600 dark:text-red-500 hover:underline"
                 >
                   <i class="fas fa-edit"></i>
+                </a>
+                <a
+                  th:href="@{/user/contact/details/{id}(id=${contact.id})}"
+                  class="font-medium flex items-center gap-4 ml-2 text-red-600 dark:text-red-500 hover:underline"
+                >
+                  <i class="fas fa-eye"></i>
                 </a>
               </td>
             </tr>
